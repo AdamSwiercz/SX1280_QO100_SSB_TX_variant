@@ -1,4 +1,152 @@
 ================================================================================
+  QO-100 SSB TX — Raspberry Pi Pico Wiring Reference v.1.5.1
+================================================================================
+
+--------------------------------------------------------------------------------
+  COMPLETE GPIO MAP
+--------------------------------------------------------------------------------
+
+  GP0   PTT button -> GND       GP1   FREE
+  GP2   TFT RST                 GP3   TFT DC
+  GP4   TFT SD_CS               GP5   TFT Backlight
+  GP6   OLED SDA (I2C1)         GP7   OLED SCL (I2C1)
+  GP8   FREE                    GP9   TFT CS (SPI1)
+  GP10  I2S BCLK                GP11  I2S WS
+  GP12  I2S DATA                GP13  FREE
+  GP14  SX1280 RX_EN            GP15  SX1280 TX_EN
+  GP16  SX1280 MISO (SPI0)      GP17  SX1280 NSS  (SPI0)
+  GP18  SX1280 SCK  (SPI0)      GP19  SX1280 MOSI (SPI0)
+  GP20  SX1280 RESET            GP21  SX1280 BUSY
+  GP22  TCXO_EN                 GP23  internal — SMPS mode
+  GP24  internal — VBUS sense   GP25  onboard LED
+  GP26  TFT SCK  (SPI1)         GP27  TFT MOSI (SPI1)
+  GP28  TFT MISO (SPI1)         GP29  FREE
+
+--------------------------------------------------------------------------------
+  SX1280 RADIO MODULE  (SPI0 — 18 MHz)
+--------------------------------------------------------------------------------
+
+  GPIO   Pin#   Signal      Dir    Notes
+  -----  -----  ----------  -----  ---------------------------------------------
+  GP16    21    MISO        IN     SPI0 RX
+  GP17    22    NSS / CS    OUT    SPI0 CS, active-LOW
+  GP18    24    SCK         OUT    SPI0 clock
+  GP19    25    MOSI        OUT    SPI0 TX
+  GP14    19    RX_EN       OUT    Enable LNA / RX path
+  GP15    20    TX_EN       OUT    Enable PA / TX path
+  GP20    26    RESET       OUT    Active-LOW reset
+  GP21    27    BUSY        IN     HIGH = busy, wait before next command
+  GP22    29    TCXO_EN     OUT    Active-HIGH, #if USE_TCXO_MODULE only
+
+  Note: TX_EN and RX_EN are never HIGH at the same time.
+        TX_EN asserted by Core1 when first audio block is ready.
+        RX_EN held LOW (TX-only device).
+        Set USE_TCXO_MODULE 0 in main.c to use internal RC oscillator
+        and leave GP22 unconnected.
+
+--------------------------------------------------------------------------------
+  TFT ST7735 DISPLAY  (SPI1 — 128x160)
+--------------------------------------------------------------------------------
+
+  GPIO   Pin#   Signal      Dir    Notes
+  -----  -----  ----------  -----  ---------------------------------------------
+  GP26    31    SCK         OUT    SPI1 clock
+  GP27    32    MOSI        OUT    SPI1 TX
+  GP28    34    MISO        IN     SPI1 RX — SD card reads only
+  GP9     12    CS          OUT    SPI1 CS, active-LOW
+  GP2      4    RST         OUT    Hardware reset, active-LOW
+  GP3      5    DC          OUT    LOW = command, HIGH = data
+  GP4      6    SD_CS       OUT    Keep HIGH when SD card unused
+  GP5      7    Backlight   OUT    HIGH = on
+
+  Note: To hard-code TFT as default (skip autodetect), set
+        g_display_type = DISPLAY_TFT before display_init() in main().
+        Runtime switch: "display tft"  over USB CDC serial.
+
+--------------------------------------------------------------------------------
+  OLED SSD1306 DISPLAY  (I2C1 — 128x64, alternative to TFT)
+--------------------------------------------------------------------------------
+
+  GPIO   Pin#   Signal      Dir    Notes
+  -----  -----  ----------  -----  ---------------------------------------------
+  GP6      9    SDA         I/O    I2C1 data
+  GP7     10    SCL         OUT    I2C1 clock
+
+  Note: Autodetected at boot by display_probe().
+        Runtime switch: "display oled" / "display tft" / "display auto"
+
+--------------------------------------------------------------------------------
+  I2S MICROPHONE  (INMP441 or compatible)
+--------------------------------------------------------------------------------
+
+  GPIO   Pin#   Signal      Dir    Notes
+  -----  -----  ----------  -----  ---------------------------------------------
+  GP10    14    BCLK        OUT    Bit clock
+  GP11    15    WS / LRCK   OUT    Word select (left/right clock)
+  GP12    16    DATA        IN     Serial audio data
+
+  Note: Active when "source mic" is selected or USB host absent at boot.
+        Firmware auto-switches to I2S mic if no USB host within 2 s of boot.
+        Runtime switch: "source mic" / "source usb"  over USB CDC serial.
+
+--------------------------------------------------------------------------------
+  HARDWARE PTT BUTTON
+--------------------------------------------------------------------------------
+
+  GPIO   Pin#   Signal      Dir    Notes
+  -----  -----  ----------  -----  ---------------------------------------------
+  GP0      1    PTT         IN     Internal pull-up enabled, active-LOW
+
+  Wiring: GP0  -->  momentary switch  -->  GND  (pin 3 or any GND pin)
+
+  Note: Pulling GP0 LOW enables TX independently of USB/GUI "tx" command.
+        Either source (PTT or GUI) is sufficient to enable transmission.
+        Works standalone with no PC connected.
+        Query state via CDC: "ptt"
+
+--------------------------------------------------------------------------------
+  USB (built-in Pico connector)
+--------------------------------------------------------------------------------
+
+  Function : USB Audio Class 1.0 microphone input  (stereo 16-bit, 48 kHz)
+             USB CDC serial control interface       (any baud rate)
+
+  Key CDC commands:
+    help                      list all commands
+    get                       human-readable config + PTT/TX state
+    getall                    machine-readable dump (used by GUI)
+    tx 0|1                    software TX gate on/off
+    ptt                       read hardware PTT pin (GP0) state
+    source usb|mic            switch audio input
+    display oled|tft|auto     switch or autodetect display
+    freq <Hz>                 set TX frequency (2400000000-2500000000)
+    ppm <val>                 set TCXO PPM correction
+    txpwr <-18..13>           set TX power in dBm
+    cw / stop                 CW carrier test on/off
+    diag                      SX1280 register status dump
+
+  Fallback: if USB host absent at boot, firmware auto-switches to I2S mic
+            (standalone operation, hardware PTT via GP0).
+
+--------------------------------------------------------------------------------
+  POWER
+--------------------------------------------------------------------------------
+
+  Pico VSYS  (pin 39)  5 V input  (USB bus power or external 5 V)
+  Pico 3V3   (pin 36)  3.3 V out  (SX1280, displays, INMP441 VDD)
+  GND        (pins 3, 8, 13, 18, 23, 28, 33, 38)  common ground
+
+================================================================================
+
+
+
+
+
+
+
+
+Original file for 1.5.0 version :
+================================================================================
         WIRING DIAGRAM: Raspberry Pi Pico ↔ LoRa1280F27-TCXO
 ================================================================================
 
