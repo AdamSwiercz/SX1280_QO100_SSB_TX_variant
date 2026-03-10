@@ -84,6 +84,7 @@
   GP10    14    BCLK        OUT    Bit clock
   GP11    15    WS / LRCK   OUT    Word select (left/right clock)
   GP12    16    DATA        IN     Serial audio data
+  GND           L/R                Choose left channel
 
   Note: Active when "source mic" is selected or USB host absent at boot.
         Firmware auto-switches to I2S mic if no USB host within 2 s of boot.
