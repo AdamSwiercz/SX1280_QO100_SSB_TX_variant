@@ -2,70 +2,10 @@
 
 ## 📹 Demo Video
 
-[🎬 Kliknij tutaj aby obejrzeć demo wideo](https://github.com/AdamSwiercz/SX1280_QO100_SSB_TX_variant/releases/download/v1.0-demo/demo.mp4)
+<iframe width="100%" height="600" src="https://AdamSwiercz.github.io/SX1280_QO100_SSB_TX_variant/" frameborder="0" allowfullscreen style="border-radius: 8px; border: 1px solid #ddd;"></iframe>
 
 ---
 
-
-Here are list of available commands:
-
-
-```
-help                        - list all commands
-get                         - human-readable config dump
-getall                      - machine-readable config dump (GUI)
-diag                        - SX1280 register and pin status
-tx 0                        - software TX off
-tx 1                        - software TX on
-ptt                         - read hardware PTT pin state (GP0)
-source usb                  - switch audio input to USB
-source mic                  - switch audio input to I2S mic
-freq 2400269969             - set TX frequency in Hz
-ppm -0.606                  - set TCXO PPM correction
-txpwr 13                    - set TX power to +13 dBm (max)
-txpwr -18                   - set TX power to -18 dBm (min)
-cw                          - start CW continuous carrier test
-stop                        - stop CW, return to SSB standby
-display tft                 - switch to TFT ST7735 display
-display oled                - switch to OLED SSD1306 display
-display auto                - re-run display autodetect
-lcdtest                     - run TFT visual test pattern
-lcdreset                    - reset display to normal mode
-lcdfps 3                    - TFT refresh rate (blocks, 3 = ~10 fps)
-enable bp 1                 - enable bandpass filter
-enable eq 1                 - enable EQ
-enable comp 1               - enable compressor
-enable vox 1                - enable VOX
-enable bp 0                 - disable bandpass filter
-enable eq 0                 - disable EQ
-enable comp 0               - disable compressor
-enable vox 0                - disable VOX
-set bp_lo 110               - bandpass lower cutoff Hz
-set bp_hi 2810              - bandpass upper cutoff Hz
-set bp_stages 7             - bandpass stages (each +12 dB/oct)
-set eq_low_hz 50            - low shelf frequency Hz
-set eq_low_db -24           - low shelf gain dB
-set eq_high_hz 760          - high shelf frequency Hz
-set eq_high_db 15.5         - high shelf gain dB
-set comp_thr 0              - compressor threshold dB
-set comp_ratio 6.1          - compressor ratio
-set comp_att 41.1           - compressor attack ms
-set comp_rel 1595           - compressor release ms
-set comp_makeup 0           - compressor makeup gain dB
-set comp_knee 24            - compressor knee width dB
-set comp_outlim 0.94        - compressor output limiter (0.05-0.999)
-set amp_gain 2.42           - amplitude gain factor
-set amp_min_a 0.000000002   - minimum amplitude floor
-set vox_thr 0.129           - VOX open threshold (0.001-1.0)
-set vox_att 1.4             - VOX attack ms
-set vox_rel 12              - VOX release ms
-set vox_hold 70             - VOX hold ms
-set vox_tail 1              - VOX tail ramp-down ms
-```
-
-**Experimental SSB/Digital transmitter for QO-100 satellite based on SX1280 module (2.4 GHz)**
-
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ## Demo
 
@@ -347,4 +287,3 @@ This project uses:
 ---
 
 73 de SP8ESA
-
