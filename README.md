@@ -1,5 +1,12 @@
 # SX1280 QO-100 SSB TX v. 1.5.1 UPDATE
 
+## 📹 Demo Video
+
+[🎬 Kliknij tutaj aby obejrzeć demo wideo](https://github.com/AdamSwiercz/SX1280_QO100_SSB_TX_variant/releases/download/v1.0-demo/demo.mp4)
+
+---
+
+
 Here are list of available commands:
 
 
@@ -341,10 +348,3 @@ This project uses:
 
 73 de SP8ESA
 
-
-## 📹 Demo Video
-
-<video width="100%" controls>
-  <source src="videos/Messenger_creation_CA37260F-2FB7-4250-8969-FF271792A51F.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
