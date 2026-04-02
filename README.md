@@ -2,7 +2,7 @@
 
 ## 📹 Demo Video
 
-[![Watch demo](https://img.shields.io/badge/▶%20WATCH%20DEMO%20VIDEO-blue?style=for-the-badge&logo=play-circle)](https://AdamSwiercz.github.io/SX1280_QO100_SSB_TX_variant/)
+[🎬 Kliknij aby obejrzeć demo video](https://github.com/AdamSwiercz/SX1280_QO100_SSB_TX_variant/raw/master/videos/Messenger_creation_CA37260F-2FB7-4250-8969-FF271792A51F.mp4)
 
 ---
 
