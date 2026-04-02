@@ -2,7 +2,7 @@
 
 ## 📹 Demo Video
 
-<iframe width="100%" height="600" src="https://AdamSwiercz.github.io/SX1280_QO100_SSB_TX_variant/" frameborder="0" allowfullscreen style="border-radius: 8px; border: 1px solid #ddd;"></iframe>
+[![Watch demo](https://img.shields.io/badge/▶%20WATCH%20DEMO%20VIDEO-blue?style=for-the-badge&logo=play-circle)](https://AdamSwiercz.github.io/SX1280_QO100_SSB_TX_variant/)
 
 ---
 
