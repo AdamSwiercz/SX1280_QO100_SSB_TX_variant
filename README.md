@@ -2,7 +2,7 @@
 
 ## 📹 Demo Video
 
-[🎬 Kliknij aby obejrzeć demo video](https://github.com/AdamSwiercz/SX1280_QO100_SSB_TX_variant/raw/master/videos/Messenger_creation_CA37260F-2FB7-4250-8969-FF271792A51F.mp4)
+[🎬 Kliknij aby obejrzeć demo video](https://github.com/AdamSwiercz/SX1280_QO100_SSB_TX_variant/raw/master/videos/demo.mp4)
 
 ---
 
