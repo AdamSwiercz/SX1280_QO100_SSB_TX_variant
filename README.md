@@ -2,7 +2,7 @@
 
 ## 📹 Demo Video
 
-[🎬 Obejrzyj Demo Video](https://github.com/AdamSwiercz/SX1280_QO100_SSB_TX_variant/blob/master/videos/demo.mp4?raw=false)
+[🎬 Obejrzyj Demo Video na GitHub Pages](https://AdamSwiercz.github.io/SX1280_QO100_SSB_TX_variant/)
 
 ---
 
